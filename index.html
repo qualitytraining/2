@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GymFit Pro</title>
+    <title>Quality Training</title>
 
-    <!-- SEO BÁSICO -->
-    <meta name="description" content="GymFit Pro en Naguabo, Puerto Rico. Entrenamiento personal, clases grupales, nutrición y resultados reales.">
-    <meta name="keywords" content="gym, gimnasio, Naguabo, entrenamiento personal, fitness, GymFit Pro">
-    <meta name="author" content="GymFit Pro">
+    <!-- SEO -->
+    <meta name="description" content="Quality Training en Naguabo, Puerto Rico. Entrenamiento personal, clases grupales, nutrición y resultados reales.">
+    <meta name="keywords" content="Quality Training, gym, gimnasio, Naguabo, entrenamiento personal, fitness">
+    <meta name="author" content="Quality Training">
 
     <style>
         /* ===========================
-           PALETA DE COLORES
+           PALETA DE COLORES (LOGO)
         ============================ */
         :root {
-            --green: #00e676;
+            --green: #00ff7f;
             --violet: #9b5de5;
             --dark: #0d0d0d;
             --light: #ffffff;
@@ -32,10 +32,6 @@
         /* ===========================
            ESTILOS GENERALES
         ============================ */
-        * {
-            box-sizing: border-box;
-        }
-
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
@@ -109,10 +105,8 @@
             background: rgba(255,255,255,0.95);
         }
 
-        .logo {
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--violet);
+        .logo-img {
+            height: 55px;
         }
 
         .nav-links {
@@ -159,11 +153,6 @@
             padding: 0 20px;
         }
 
-        body.light-mode header {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8)),
-                        url('gym-premium.jpg') center/cover no-repeat;
-        }
-
         header h1 {
             font-size: 4rem;
             letter-spacing: 2px;
@@ -193,7 +182,19 @@
         }
 
         header a:hover {
-            background: #00c96a;
+            background: #00d96a;
+        }
+
+        /* ===========================
+           SOBRE QUALITY TRAINING
+        ============================ */
+        .about {
+            background: #111;
+            border-radius: 10px;
+            padding: 40px;
+            line-height: 1.7;
+            color: var(--gray);
+            border-left: 4px solid var(--violet);
         }
 
         /* ===========================
@@ -205,10 +206,6 @@
             border-radius: 10px;
             text-align: center;
             border-top: 4px solid var(--violet);
-        }
-
-        body.light-mode .price-card {
-            background: #ffffff;
         }
 
         .price-card h3 {
@@ -254,10 +251,6 @@
             border-left: 4px solid var(--violet);
         }
 
-        body.light-mode .testimonial {
-            background: #ffffff;
-        }
-
         .testimonial p {
             color: var(--gray);
         }
@@ -284,7 +277,7 @@
             border-radius: 50px;
             font-weight: bold;
             text-decoration: none;
-            box-shadow: 0 0 10px #00e676;
+            box-shadow: 0 0 10px #00ff7f;
             transition: 0.3s;
             z-index: 999;
         }
@@ -303,7 +296,8 @@
             color: var(--gray);
         }
 
-        .socials {
+        .footer-logo {
+            height: 60px;
             margin-bottom: 10px;
         }
 
@@ -325,24 +319,6 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* ===========================
-           RESPONSIVE
-        ============================ */
-        @media (max-width: 768px) {
-            nav {
-                padding: 10px 5%;
-            }
-            header h1 {
-                font-size: 2.8rem;
-            }
-            header p {
-                font-size: 1.1rem;
-            }
-            section {
-                padding: 60px 5%;
-            }
-        }
     </style>
 </head>
 
@@ -352,8 +328,9 @@
      NAVBAR
 =========================== -->
 <nav>
-    <div class="logo">GymFit Pro</div>
+    <img src="logo-quality.png" class="logo-img" alt="Quality Training Logo">
     <div class="nav-links">
+        <a href="#sobre">Sobre</a>
         <a href="#servicios">Servicios</a>
         <a href="#membresias">Membresías</a>
         <a href="#galeria">Galería</a>
@@ -367,11 +344,28 @@
 =========================== -->
 <header>
     <div>
-        <h1>GymFit Pro</h1>
+        <h1>Quality Training</h1>
         <p>Donde la disciplina se convierte en resultados.</p>
         <a href="#contacto">Únete Hoy</a>
     </div>
 </header>
+
+<!-- ===========================
+     SOBRE QUALITY TRAINING
+=========================== -->
+<section id="sobre">
+    <h2>Sobre Quality Training</h2>
+    <div class="about">
+        <p>
+            En Quality Training creemos en un entrenamiento inteligente, seguro y diseñado para resultados reales. 
+            Nuestro enfoque combina fuerza, resistencia, movilidad y nutrición para transformar tu cuerpo y tu vida.
+        </p>
+        <p>
+            No somos un simple gym. Somos una comunidad comprometida con el progreso, la disciplina y el bienestar. 
+            Aquí entrenas con propósito, acompañado de profesionales que saben llevarte al próximo nivel.
+        </p>
+    </div>
+</section>
 
 <!-- ===========================
      SERVICIOS
@@ -455,9 +449,9 @@
 <section id="galeria">
     <h2>Galería</h2>
     <div class="grid gallery">
-        <img src="gym1.jpg" alt="Área de pesas">
-        <img src="gym2.jpg" alt="Zona de cardio">
-        <img src="gym3.jpg" alt="Clases grupales">
+        <img src="gym1.jpg" alt="">
+        <img src="gym2.jpg" alt="">
+        <img src="gym3.jpg" alt="">
     </div>
 </section>
 
@@ -476,7 +470,7 @@
             <strong>- Andrea</strong>
         </div>
         <div class="testimonial">
-            <p>"Landy me cambió la vida. 100% recomendado."</p>
+            <p>"Quality Training me cambió la vida. 100% recomendado."</p>
             <strong>- José</strong>
         </div>
     </div>
@@ -487,9 +481,9 @@
 =========================== -->
 <section id="contacto">
     <h2>Contacto</h2>
-    <p>📍 Naguabo, Puerto Rico</p>
-    <p>📞 (787) 000-0000</p>
-    <p>✉️ info@gymfitpro.com</p>
+    <p>📍 Ceiba, Puerto Rico</p>
+    <p>📞 (000) 000-0000</p>
+    <p>✉️ info@qualitytraining.com</p>
 </section>
 
 <!-- ===========================
@@ -501,12 +495,13 @@
      FOOTER
 =========================== -->
 <footer>
+    <img src="logo-quality.png" class="footer-logo" alt="Quality Training Logo">
     <div class="socials">
         <a href="https://instagram.com" target="_blank">Instagram</a> |
         <a href="https://facebook.com" target="_blank">Facebook</a> |
         <a href="https://tiktok.com" target="_blank">TikTok</a>
     </div>
-    <p>© 2026 GymFit Pro. Todos los derechos reservados.</p>
+    <p>© 2026 Quality Training. Todos los derechos reservados.</p>
 </footer>
 
 <!-- ===========================
