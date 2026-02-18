@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quality Training</title>
 
-    <!-- SEO -->
     <meta name="description" content="Quality Training en Naguabo, Puerto Rico. Entrenamiento personal, clases grupales, nutrición y resultados reales.">
     <meta name="keywords" content="Quality Training, gym, gimnasio, Naguabo, entrenamiento personal, fitness">
     <meta name="author" content="Quality Training">
 
     <style>
         /* ===========================
-           PALETA DE COLORES (LOGO)
+           PALETA DE COLORES
         ============================ */
         :root {
             --green: #00ff7f;
@@ -38,6 +37,7 @@
             background: var(--bg);
             color: var(--text);
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         h2 {
@@ -59,7 +59,7 @@
             gap: 40px;
         }
 
-        .card {
+        .card, .price-card, .testimonial {
             background: rgba(26, 26, 26, 0.95);
             padding: 30px;
             border-radius: 10px;
@@ -67,68 +67,94 @@
             transition: 0.3s;
         }
 
-        body.light-mode .card {
+        body.light-mode .card, 
+        body.light-mode .price-card, 
+        body.light-mode .testimonial {
             background: #ffffff;
+            border-left: 4px solid var(--violet);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            margin-top: 0;
-            color: var(--green);
-        }
-
-        .card p {
-            color: var(--gray);
-        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { color: var(--green); margin-top: 0; }
+        .card p { color: var(--gray); }
 
         /* ===========================
-           NAVBAR
+           NAVBAR Y MENÚ LATERAL
         ============================ */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(0,0,0,0.9);
+            height: 75px;
+            background: rgba(0,0,0,0.95);
             backdrop-filter: blur(8px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 10%;
+            padding: 0 5%;
             z-index: 1000;
+            box-sizing: border-box;
         }
 
-        body.light-mode nav {
-            background: rgba(255,255,255,0.95);
+        body.light-mode nav { background: rgba(255,255,255,0.95); }
+
+        .menu-btn {
+            font-size: 32px;
+            color: var(--green);
+            cursor: pointer;
+            z-index: 1100;
         }
 
-        .logo-img {
-            height: 130px;
-        }
+        .logo-img { height: 60px; }
 
         .nav-links {
+            position: fixed;
+            top: 0;
+            left: -300px; /* Escondido */
+            width: 280px;
+            height: 100vh;
+            background: var(--dark);
             display: flex;
-            gap: 20px;
+            flex-direction: column;
+            padding-top: 100px;
+            transition: 0.4s ease-in-out;
+            z-index: 1050;
+            box-shadow: 10px 0 20px rgba(0,0,0,0.5);
         }
+
+        body.light-mode .nav-links { background: #f0f0f0; }
+
+        .nav-links.active { left: 0; }
 
         .nav-links a {
             color: var(--light);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            padding: 20px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        body.light-mode .nav-links a {
-            color: #111111;
-        }
+        body.light-mode .nav-links a { color: #111; }
 
         .nav-links a:hover {
-            color: var(--green);
+            background: var(--green);
+            color: var(--dark);
         }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            z-index: 1040;
+        }
+
+        .overlay.active { display: block; }
 
         .mode-toggle {
             cursor: pointer;
@@ -140,7 +166,7 @@
         }
 
         /* ===========================
-           HERO
+           CONTENIDO (HERO, SOBRE, ETC)
         ============================ */
         header {
             height: 100vh;
@@ -150,198 +176,57 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 20px;
         }
 
-        header h1 {
-            font-size: 4rem;
-            letter-spacing: 2px;
-            margin: 0;
-            font-weight: 700;
-            color: var(--violet);
-            animation: fadeIn 1.5s ease;
+        header h1 { font-size: 4rem; color: var(--violet); margin: 0; }
+        header p { font-size: 1.4rem; color: var(--gray); margin: 20px 0 40px; }
+        header a { 
+            background: var(--green); padding: 15px 40px; color: var(--dark); 
+            text-decoration: none; border-radius: 5px; font-weight: bold; 
         }
 
-        header p {
-            font-size: 1.4rem;
-            margin: 20px 0 40px;
-            color: var(--gray);
-            animation: fadeIn 2s ease;
+        .about { 
+            background: #111; padding: 40px; border-radius: 10px; 
+            line-height: 1.7; color: var(--gray); border-left: 4px solid var(--violet); 
         }
 
-        header a {
-            background: var(--green);
-            padding: 15px 40px;
-            color: var(--dark);
-            text-decoration: none;
-            font-size: 1.1rem;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
-            animation: fadeIn 2.5s ease;
+        .price-card { text-align: center; border-top: 4px solid var(--violet); border-left: none; }
+        .price-card h3 { color: var(--violet); }
+        .price-card .price { font-size: 2.2rem; color: var(--green); margin: 20px 0; }
+        .price-card ul { list-style: none; padding: 0; color: var(--gray); }
+        .price-card ul li { margin: 10px 0; }
+
+        .gallery img { width: 100%; border-radius: 10px; transition: 0.3s; }
+        .gallery img:hover { transform: scale(1.05); }
+
+        .whatsapp { 
+            position: fixed; bottom: 25px; right: 25px; background: var(--green); 
+            color: var(--dark); padding: 15px 20px; border-radius: 50px; 
+            font-weight: bold; text-decoration: none; z-index: 999; 
         }
 
-        header a:hover {
-            background: #00d96a;
-        }
-
-        /* ===========================
-           SOBRE QUALITY TRAINING
-        ============================ */
-        .about {
-            background: #111;
-            border-radius: 10px;
-            padding: 40px;
-            line-height: 1.7;
-            color: var(--gray);
-            border-left: 4px solid var(--violet);
-        }
-
-        /* ===========================
-           MEMBRESÍAS
-        ============================ */
-        .price-card {
-            background: rgba(26, 26, 26, 0.95);
-            padding: 40px;
-            border-radius: 10px;
-            text-align: center;
-            border-top: 4px solid var(--violet);
-        }
-
-        .price-card h3 {
-            color: var(--violet);
-        }
-
-        .price-card .price {
-            font-size: 2rem;
-            margin: 20px 0;
-            color: var(--green);
-        }
-
-        .price-card ul {
-            list-style: none;
-            padding: 0;
-            color: var(--gray);
-        }
-
-        .price-card ul li {
-            margin: 10px 0;
-        }
-
-        /* ===========================
-           GALERÍA
-        ============================ */
-        .gallery img {
-            width: 100%;
-            border-radius: 10px;
-            transition: 0.3s;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        /* ===========================
-           TESTIMONIOS
-        ============================ */
-        .testimonial {
-            background: rgba(26, 26, 26, 0.95);
-            padding: 30px;
-            border-radius: 10px;
-            border-left: 4px solid var(--violet);
-        }
-
-        .testimonial p {
-            color: var(--gray);
-        }
-
-        /* ===========================
-           CONTACTO
-        ============================ */
-        #contacto p {
-            font-size: 1.2rem;
-            margin: 10px 0;
-            text-align: center;
-        }
-
-        /* ===========================
-           WHATSAPP FLOTANTE
-        ============================ */
-        .whatsapp {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: var(--green);
-            color: var(--dark);
-            padding: 15px 20px;
-            border-radius: 50px;
-            font-weight: bold;
-            text-decoration: none;
-            box-shadow: 0 0 10px #00ff7f;
-            transition: 0.3s;
-            z-index: 999;
-        }
-
-        .whatsapp:hover {
-            transform: scale(1.1);
-        }
-
-        /* ===========================
-           FOOTER
-        ============================ */
-        footer {
-            background: #000;
-            padding: 20px;
-            text-align: center;
-            color: var(--gray);
-        }
-
-        .footer-logo {
-            height: 60px;
-            margin-bottom: 10px;
-        }
-
-        .socials a {
-            margin: 0 8px;
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .socials a:hover {
-            color: var(--green);
-        }
-
-        /* ===========================
-           ANIMACIONES
-        ============================ */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        footer { background: #000; padding: 40px 20px; text-align: center; color: var(--gray); }
+        .footer-logo { height: 60px; margin-bottom: 15px; }
     </style>
 </head>
-
 <body>
 
-<!-- ===========================
-     NAVBAR
-=========================== -->
+<div class="overlay" id="overlay"></div>
+
 <nav>
+    <div class="menu-btn" id="menuBtn">☰</div>
     <img src="logo-quality.png" class="logo-img" alt="Quality Training Logo">
-    <div class="nav-links">
-        <a href="#sobre">Sobre</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#membresias">Membresías</a>
-        <a href="#galeria">Galería</a>
-        <a href="#contacto">Contacto</a>
-    </div>
     <div class="mode-toggle" id="modeToggle">Modo claro</div>
 </nav>
 
-<!-- ===========================
-     HERO
-=========================== -->
+<div class="nav-links" id="navLinks">
+    <a href="#sobre">Sobre</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#membresias">Membresías</a>
+    <a href="#galeria">Galería</a>
+    <a href="#contacto">Contacto</a>
+</div>
+
 <header>
     <div>
         <h1>Quality Training</h1>
@@ -350,26 +235,14 @@
     </div>
 </header>
 
-<!-- ===========================
-     SOBRE QUALITY TRAINING
-=========================== -->
 <section id="sobre">
     <h2>Sobre Quality Training</h2>
     <div class="about">
-        <p>
-            En Quality Training creemos en un entrenamiento inteligente, seguro y diseñado para resultados reales. 
-            Nuestro enfoque combina fuerza, resistencia, movilidad y nutrición para transformar tu cuerpo y tu vida.
-        </p>
-        <p>
-            No somos un simple gym. Somos una comunidad comprometida con el progreso, la disciplina y el bienestar. 
-            Aquí entrenas con propósito, acompañado de profesionales que saben llevarte al próximo nivel.
-        </p>
+        <p>En Quality Training creemos en un entrenamiento inteligente, seguro y diseñado para resultados reales. Nuestro enfoque combina fuerza, resistencia, movilidad y nutrición para transformar tu cuerpo y tu vida.</p>
+        <p>No somos un simple gym. Somos una comunidad comprometida con el progreso, la disciplina y el bienestar.</p>
     </div>
 </section>
 
-<!-- ===========================
-     SERVICIOS
-=========================== -->
 <section id="servicios">
     <h2>Servicios</h2>
     <div class="grid">
@@ -388,9 +261,6 @@
     </div>
 </section>
 
-<!-- ===========================
-     ENTRENADORES
-=========================== -->
 <section id="entrenadores">
     <h2>Entrenadores</h2>
     <div class="grid">
@@ -405,9 +275,6 @@
     </div>
 </section>
 
-<!-- ===========================
-     MEMBRESÍAS
-=========================== -->
 <section id="membresias">
     <h2>Membresías</h2>
     <div class="grid">
@@ -420,7 +287,6 @@
                 <li>Cardio ilimitado</li>
             </ul>
         </div>
-
         <div class="price-card">
             <h3>Premium</h3>
             <p class="price">$45 / mes</p>
@@ -430,7 +296,6 @@
                 <li>Evaluación física mensual</li>
             </ul>
         </div>
-
         <div class="price-card">
             <h3>Elite</h3>
             <p class="price">$75 / mes</p>
@@ -443,42 +308,23 @@
     </div>
 </section>
 
-<!-- ===========================
-     GALERÍA
-=========================== -->
 <section id="galeria">
     <h2>Galería</h2>
     <div class="grid gallery">
-        <img src="gym1.jpg" alt="">
-        <img src="gym2.jpg" alt="">
-        <img src="gym3.jpg" alt="">
+        <img src="gym1.jpg" alt="Gym 1">
+        <img src="gym2.jpg" alt="Gym 2">
+        <img src="gym3.jpg" alt="Gym 3">
     </div>
 </section>
 
-<!-- ===========================
-     TESTIMONIOS
-=========================== -->
 <section id="testimonios">
     <h2>Testimonios</h2>
     <div class="grid">
-        <div class="testimonial">
-            <p>"El mejor gym de Naguabo. Resultados reales."</p>
-            <strong>- Carlos</strong>
-        </div>
-        <div class="testimonial">
-            <p>"Ambiente brutal y entrenadores que saben lo que hacen."</p>
-            <strong>- Andrea</strong>
-        </div>
-        <div class="testimonial">
-            <p>"Quality Training me cambió la vida. 100% recomendado."</p>
-            <strong>- José</strong>
-        </div>
+        <div class="testimonial"><p>"El mejor gym de Naguabo. Resultados reales." <strong>- Carlos</strong></p></div>
+        <div class="testimonial"><p>"Ambiente brutal y entrenadores que saben." <strong>- Andrea</strong></p></div>
     </div>
 </section>
 
-<!-- ===========================
-     CONTACTO
-=========================== -->
 <section id="contacto">
     <h2>Contacto</h2>
     <p>📍 Ceiba, Puerto Rico</p>
@@ -486,29 +332,31 @@
     <p>✉️ info@qualitytraining.com</p>
 </section>
 
-<!-- ===========================
-     WHATSAPP FLOTANTE
-=========================== -->
 <a class="whatsapp" href="https://wa.me/17870000000" target="_blank">WhatsApp</a>
 
-<!-- ===========================
-     FOOTER
-=========================== -->
 <footer>
-    <img src="logo-quality.png" class="footer-logo" alt="Quality Training Logo">
-    <div class="socials">
-        <a href="https://instagram.com" target="_blank">Instagram</a> |
-        <a href="https://facebook.com" target="_blank">Facebook</a> |
-        <a href="https://tiktok.com" target="_blank">TikTok</a>
-    </div>
+    <img src="logo-quality.png" class="footer-logo" alt="Logo">
     <p>© 2026 Quality Training. Todos los derechos reservados.</p>
 </footer>
 
-<!-- ===========================
-     JS: MODO CLARO/OSCURO
-=========================== -->
 <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const overlay = document.getElementById('overlay');
     const toggle = document.getElementById('modeToggle');
+
+    function toggleMenu() {
+        navLinks.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', toggleMenu);
+    });
+
     toggle.addEventListener('click', () => {
         document.body.classList.toggle('light-mode');
         toggle.textContent = document.body.classList.contains('light-mode') ? 'Modo oscuro' : 'Modo claro';
@@ -517,6 +365,3 @@
 
 </body>
 </html>
-
-
-
